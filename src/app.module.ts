@@ -8,7 +8,12 @@ import { ExchangeModule } from './exchange/exchange.module';
 import configDB from './ormConfig';
 
 @Module({
-  imports: [UserModule, AuthModule, TypeOrmModule.forRoot(configDB), ExchangeModule],
+  imports: [
+    UserModule,
+    AuthModule,
+    TypeOrmModule.forRoot(configDB),
+    ExchangeModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
