@@ -5,8 +5,8 @@ export class ExchangeDto {
   @Length(3)
   from: string;
 
-  @Length(3)
   @IsString()
+  @Length(3)
   to: string;
 
   @IsNumber()
