@@ -1,13 +1,28 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Currency } from './currency.entity';
 
 @Entity()
-export class Currency {
+export class ExchangeCurrency {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 3, unique: true })
-  base: string;
+  @ManyToOne(() => Currency)
+  @JoinColumn({ name: 'base_currency_id' })
+  baseCurrency: Currency;
+
+  @ManyToOne(() => Currency)
+  @JoinColumn({ name: 'target_currency_id' })
+  targetCurrency: Currency;
 
   @Column()
-  description: string;
+  exchangeRate: number;
+
+  @Column()
+  updated: Date;
 }
