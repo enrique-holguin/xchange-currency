@@ -4,21 +4,10 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import configDB from './ormConfig';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'admin',
-      database: 'xcurrency',
-      entities: [],
-    }),
-    UserModule,
-    AuthModule,
-  ],
+  imports: [UserModule, AuthModule, TypeOrmModule.forRoot(configDB)],
   controllers: [AppController],
   providers: [AppService],
 })
