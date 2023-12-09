@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import * as bcrypt from 'bcrypt';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -15,5 +16,9 @@ export class AuthService {
       const { password, ...result } = user;
       return result;
     }
+  }
+
+  async login(user:User) {
+    
   }
 }
