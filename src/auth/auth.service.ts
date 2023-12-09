@@ -10,8 +10,8 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
   ) {}
-  async validateUser(email: string, password: string) {
-    const user = await this.userService.findOne(email);
+  async validateUser(username: string, password: string) {
+    const user = await this.userService.findOne(username);
     if (!user) {
       return null;
     }
@@ -24,7 +24,7 @@ export class AuthService {
 
   async login(user: User) {
     const payload = {
-      email: user.email,
+      username: user.email,
       sub: {
         name: user.name,
       },

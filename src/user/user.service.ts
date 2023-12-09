@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,6 +11,9 @@ export class UserService {
     @InjectRepository(User) private readonly userRepo: Repository<User>,
   ) {}
   async create(createUserDto: CreateUserDto) {
+    const isUserRegistered = await this.findOne(createUserDto.email);
+    if (isUserRegistered)
+      throw new BadRequestException('User already registered');
     const user = this.userRepo.create(createUserDto);
     return await this.userRepo.save(user);
   }
@@ -19,8 +22,8 @@ export class UserService {
     return `This action returns all user`;
   }
 
-  async findOne(email: string) {
-    return await this.userRepo.findOne({ where: { email } });
+  async findOne(username: string) {
+    return await this.userRepo.findOne({ where: { email: username } });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
