@@ -13,7 +13,7 @@ export class UserService {
     return `This action returns all user`;
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return `This action returns a #${id} user`;
   }
 
