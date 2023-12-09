@@ -26,8 +26,8 @@ export class UserController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.userService.findOne(id);
+  findOne(@Param('email') email: string) {
+    return this.userService.findOne(email);
   }
 
   @Patch(':id')
