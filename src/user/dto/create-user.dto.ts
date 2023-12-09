@@ -7,9 +7,13 @@ import {
 } from 'class-validator';
 
 export class CreateUserDto {
+  @MinLength(3)
+  @MaxLength(25)
   @IsString()
   name: string;
   @IsEmail()
+  @MinLength(8)
+  @MaxLength(50)
   email: string;
   @MinLength(6)
   @MaxLength(50)
