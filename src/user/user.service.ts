@@ -19,8 +19,8 @@ export class UserService {
     return `This action returns all user`;
   }
 
-  async findOne(id: number) {
-    return await this.userRepo.findOne({ where: { id } });
+  async findOne(email: string) {
+    return await this.userRepo.findOne({ where: { email } });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
