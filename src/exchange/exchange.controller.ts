@@ -9,7 +9,7 @@ export class ExchangeController {
   @UseGuards(JwtGuard)
   @Post()
   async calculateExchange(@Body() exchangeDto: ExchangeDto) {
-    console.log(exchangeDto);
-    return 'autorizado';
+    const result = await this.exchangeService.calculateExchange(exchangeDto);
+    return result;
   }
 }
