@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ExchangeCurrency } from './entities/exchange-currency.entity';
 import { Repository } from 'typeorm';
@@ -12,14 +16,13 @@ export class ExchangeService {
   ) {}
   async calculateExchange(data: ExchangeDto) {
     const { from, to, amount } = data;
-
     const baseCurrency = await this.exchangeCurrencyRepository.findOne({
       relations: ['baseCurrency', 'targetCurrency'],
       where: { baseCurrency: { base: from }, targetCurrency: { base: to } },
     });
 
     if (!baseCurrency) {
-      throw new BadRequestException('Invalid currency pair');
+      throw new NotFoundException('Invalid currency pair');
     }
 
     const exchangedAmount = amount * baseCurrency.exchangeRate;
@@ -31,5 +34,10 @@ export class ExchangeService {
       to: baseCurrency.targetCurrency.base,
       exchangeRate: baseCurrency.exchangeRate,
     };
+  }
+
+  private handleError(error: any): void {
+    console.log(error);
+    throw new InternalServerErrorException('Please check server logs');
   }
 }
