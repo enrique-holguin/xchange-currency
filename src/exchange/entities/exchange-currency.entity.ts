@@ -20,7 +20,7 @@ export class ExchangeCurrency {
   @JoinColumn({ name: 'target_currency_id' })
   targetCurrency: Currency;
 
-  @Column()
+  @Column('decimal', { precision: 10, scale: 5 })
   exchangeRate: number;
 
   @Column()
