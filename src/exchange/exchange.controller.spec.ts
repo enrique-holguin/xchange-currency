@@ -50,7 +50,7 @@ describe('ExchangeController', () => {
 
   describe('calculateExchange', () => {
     it('should call calculateExchange method of ExchangeService', async () => {
-      const exchangeDtoMock = {
+      const exchangeDtoMock: ExchangeDtoMock = {
         from: 'USD',
         to: 'EUR',
         amount: 100,
