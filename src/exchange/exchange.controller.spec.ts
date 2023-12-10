@@ -31,15 +31,11 @@ describe('ExchangeController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        ExchangeService,
-        {
-          provide: JwtGuard,
-          useValue: jest.fn().mockImplementation(() => true),
-        },
-      ],
+      providers: [ExchangeService],
       controllers: [ExchangeController],
     })
+      .overrideGuard(JwtGuard)
+      .useValue(jest.fn().mockImplementation(() => true))
       .overrideProvider(ExchangeService)
       .useValue(mockExchangeService)
       .compile();
