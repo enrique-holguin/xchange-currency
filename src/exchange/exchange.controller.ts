@@ -1,6 +1,6 @@
 import { Controller, Post, UseGuards, Body } from '@nestjs/common';
 import { ExchangeService } from './exchange.service';
-import { JwtGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtGuard } from '../auth/guards/jwt-auth.guard';
 import { ExchangeDto } from './dto/exchange.dto';
 
 @Controller('exchange')
