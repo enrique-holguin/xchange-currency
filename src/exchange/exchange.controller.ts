@@ -2,12 +2,16 @@ import { Controller, Post, UseGuards, Body } from '@nestjs/common';
 import { ExchangeService } from './exchange.service';
 import { JwtGuard } from '../auth/guards/jwt-auth.guard';
 import { ExchangeDto } from './dto/exchange.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Exchange')
 @Controller('exchange')
 export class ExchangeController {
   constructor(private readonly exchangeService: ExchangeService) {}
+  @ApiBody({
+    description: 'Exchange executed',
+    type: ExchangeDto,
+  })
   @UseGuards(JwtGuard)
   @Post()
   async calculateExchange(@Body() exchangeDto: ExchangeDto) {
