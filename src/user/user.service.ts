@@ -4,6 +4,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { LoginUserDto } from './dto/login-user.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -20,6 +22,21 @@ export class UserService {
 
   findAll() {
     return `This action returns all user`;
+  }
+
+  async login(loginUserDto: LoginUserDto) {
+    const user = await this.findOne(loginUserDto.username);
+    if (!user) {
+      return null;
+    }
+    const isValidUser = await bcrypt.compare(
+      loginUserDto.password,
+      user.password,
+    );
+    if (isValidUser) {
+      const { password, ...result } = user;
+      return result;
+    }
   }
 
   async findOne(username: string) {
