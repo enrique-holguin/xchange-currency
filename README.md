@@ -17,6 +17,7 @@ Currency exchange API.
 
 ```bash
 $ docker compose up -d
+```
 
 Run seed to populate the database
 
