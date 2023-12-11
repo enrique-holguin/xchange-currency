@@ -1,4 +1,4 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { SeedService } from './seed.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
@@ -12,7 +12,7 @@ export class SeedController {
     description: 'Seed data inserted successfully',
   })
   @ApiResponse({ status: 500, description: 'Interal Server Error' })
-  @Post('data')
+  @Get('data')
   async seedData() {
     await this.seedService.seedData();
     return { message: 'Seed data inserted successfully' };
