@@ -31,6 +31,34 @@ Swagger
 http://localhost:3000/api/ 
 ```
 
+## Routes Requiring Bearer Token
+
+### Convert Currency
+Description : Perform currency exchange.
+
+URL: POST 
+```bash
+http://localhost:3000/exchange
+```
+
+Body: 
+```json
+{
+  "from": "string",
+  "to": "string",
+  "amount": 0
+}
+```
+
+### Get List of Available Currencies
+
+Description : Retrieve information about all available currencies.
+
+URL: GET
+```bash
+http://localhost:3000/exchange/list
+```
+
 
 ## Running the app with Node.js
 
