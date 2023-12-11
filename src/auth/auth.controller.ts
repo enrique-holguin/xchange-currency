@@ -14,7 +14,7 @@ export class AuthController {
     private userService: UserService,
   ) {}
 
-  @ApiBody({ description: 'User', type: LoginUserDto })
+  @ApiBody({ description: "User's data", type: LoginUserDto })
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req) {
@@ -22,6 +22,7 @@ export class AuthController {
     return data;
   }
 
+  @ApiBody({ description: 'Data', type: CreateUserDto })
   @Post('register')
   async registerUser(@Body() createUserDto: CreateUserDto) {
     const user = await this.userService.create(createUserDto);
