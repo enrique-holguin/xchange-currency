@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  exchangeapp:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: exchange-docker
+    container_name: exchangeapp
+    restart: always
+    ports:
+      - '3000:3000'
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: xcurrency
+      MYSQL_PASSWORD: admin
+    ports:
+      - '3306:3306'
