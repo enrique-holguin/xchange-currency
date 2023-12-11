@@ -11,18 +11,17 @@
 
 ## Description
 
-Api de cambio de divisas.
+Currency exchange API.
 
-## Installation Docker
+## Run with Docker
 
 ```bash
 $ docker compose up -d
-```
 
-Ejecutar seed para llenar la base de datos
+Run seed to populate the database
 
 ```bash
-$ localhost:3000/seed/data
+$ http://localhost:3000/seed/data
 ```
 
 Swagger 
@@ -32,17 +31,16 @@ $ http://localhost:3000/api/
 ```
 
 
-## Running the app (Node.js)
+## Running the app with Node.js
+
+### Installing dependencies
+```
+$ npm i
+```
 
 ```bash
-# development
-$ npm run start
-
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
 ## Unit Test
@@ -60,7 +58,7 @@ $ npm run test auth
 # Important :
 
 ## Bugs :
-Usando .env al momento de levantar el docker no conecta con la app con la base de datos.
+Using .env when starting the docker does not connect the app with the database.
 
 ## TODO :
-Trasladar los datos en crudo a variables de entornos. 
+Move raw data to environment variables.
