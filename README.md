@@ -21,13 +21,13 @@ $ docker compose up -d
 Run seed to populate the database
 
 ```bash
-$ http://localhost:3000/seed/data
+http://localhost:3000/seed/data
 ```
 
 Swagger 
 
 ```bash
-$ http://localhost:3000/api/ 
+http://localhost:3000/api/ 
 ```
 
 
@@ -39,7 +39,6 @@ $ npm i
 ```
 
 ```bash
-# watch mode
 $ npm run start:dev
 ```
 
