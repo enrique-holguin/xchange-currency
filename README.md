@@ -13,6 +13,11 @@
 
 Currency exchange API.
 
+## Stack :
+
+Nest.js App
+MySQL Database
+
 ## Run with Docker
 
 ```bash
