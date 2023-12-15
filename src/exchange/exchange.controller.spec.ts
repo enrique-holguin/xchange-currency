@@ -2,30 +2,25 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ExchangeController } from './exchange.controller';
 import { ExchangeService } from './exchange.service';
 import { JwtGuard } from '../auth/guards/jwt-auth.guard';
+import { ExchangeDto } from './dto/exchange.dto';
+import { ResponseExchangeDto } from './dto/responseExchange.dto';
 
 describe('ExchangeController', () => {
   let exchangeController: ExchangeController;
   let exchangeService: ExchangeService;
 
-  interface ExchangeDtoMock {
-    from: string;
-    to: string;
-    amount: number;
-  }
-  interface CalculateExchange extends ExchangeDtoMock {
-    exchangedAmount: number;
-    exchangeRate: number;
-  }
-
   const mockExchangeService = {
     calculateExchange: jest.fn(
-      (exchangeDto: ExchangeDtoMock): CalculateExchange => ({
-        amount: exchangeDto.amount,
-        exchangedAmount: exchangeDto.amount * 0.8,
-        from: exchangeDto.from,
-        to: exchangeDto.to,
-        exchangeRate: 0.8,
-      }),
+      (exchangeDto: ExchangeDto): ResponseExchangeDto => {
+        const exchangeRate = 0.8;
+        return {
+          amount: exchangeDto.amount,
+          exchangedAmount: exchangeDto.amount * exchangeRate,
+          from: exchangeDto.from,
+          to: exchangeDto.to,
+          exchangeRate,
+        };
+      },
     ),
   };
 
@@ -50,7 +45,7 @@ describe('ExchangeController', () => {
 
   describe('calculateExchange', () => {
     it('should call calculateExchange method of ExchangeService', async () => {
-      const exchangeDtoMock: ExchangeDtoMock = {
+      const exchangeDtoMock: ExchangeDto = {
         from: 'USD',
         to: 'EUR',
         amount: 100,
