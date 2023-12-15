@@ -5,5 +5,5 @@ export class ResponseExchangeDto extends ExchangeDto {
   @ApiProperty()
   exchangeRate: number;
   @ApiProperty()
-  exchangeAmount: number;
+  exchangedAmount: number;
 }
