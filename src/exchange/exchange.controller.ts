@@ -1,4 +1,13 @@
-import { Controller, Post, UseGuards, Body, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  UseGuards,
+  Body,
+  Get,
+  Param,
+  Query,
+  ValidationPipe,
+} from '@nestjs/common';
 import { ExchangeService } from './exchange.service';
 import { JwtGuard } from '../auth/guards/jwt-auth.guard';
 import { ExchangeDto } from './dto/exchange.dto';
@@ -15,14 +24,23 @@ import { Currency } from './entities/currency.entity';
 export class ExchangeController {
   constructor(private readonly exchangeService: ExchangeService) {}
   @ApiBearerAuth('jwt')
-  @ApiBody({
-    description: 'Exchange executed',
-    type: ExchangeDto,
-  })
+  // @ApiBody({
+  //   description: 'Exchange executed',
+  //   type: ExchangeDto,
+  // })
   @UseGuards(JwtGuard)
-  @Post()
-  async calculateExchange(@Body() exchangeDto: ExchangeDto) {
-    const result = await this.exchangeService.calculateExchange(exchangeDto);
+  @Get()
+  async calculateExchange(
+    @Query(
+      new ValidationPipe({
+        transform: true,
+        transformOptions: { enableImplicitConversion: true },
+        forbidNonWhitelisted: true,
+      }),
+    )
+    query: ExchangeDto,
+  ) {
+    const result = await this.exchangeService.calculateExchange(query);
     return result;
   }
   @ApiBearerAuth('jwt')
