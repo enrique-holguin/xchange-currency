@@ -18,6 +18,7 @@ export class CreateUserDto {
   @MinLength(8)
   @MaxLength(50)
   email: string;
+  @ApiProperty()
   @MinLength(6)
   @MaxLength(50)
   @Matches(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
