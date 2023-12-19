@@ -3,17 +3,17 @@ import { Type } from 'class-transformer';
 import { IsString, IsNumber, Length, IsPositive } from 'class-validator';
 
 export class ExchangeDto {
-  @ApiProperty()
+  @ApiProperty({ example: 'PEN' })
   @IsString()
   @Length(3)
   from: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'USD' })
   @IsString()
   @Length(3)
   to: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 20 })
   @IsPositive()
   @IsNumber()
   @Type(() => Number)
