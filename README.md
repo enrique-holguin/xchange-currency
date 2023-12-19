@@ -43,10 +43,12 @@ http://localhost:3000/api/
 ### Convert Currency
 Description : Perform currency exchange.
 
+
 URL: GET 
 ```bash
 http://localhost:3000/exchange
 ```
+
 
 Query : 
 ```json
