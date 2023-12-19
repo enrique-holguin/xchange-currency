@@ -1,4 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
+
+import { Type } from 'class-transformer';
+
 import { IsString, IsNumber, Length, IsPositive } from 'class-validator';
 
 export class ExchangeDto {
@@ -14,6 +17,8 @@ export class ExchangeDto {
 
   @IsPositive()
   @ApiProperty()
+  @IsPositive()
   @IsNumber()
+  @Type(() => Number)
   amount: number;
 }

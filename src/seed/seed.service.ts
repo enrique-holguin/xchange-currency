@@ -20,7 +20,11 @@ export class SeedService {
   }
 
   private async seedCurrencies() {
-    await this.currencyRepository.save(currenciesData);
+    try {
+      await this.currencyRepository.save(currenciesData);
+    } catch (err) {
+      console.error(err.code);
+    }
   }
 
   private async seedExchangeRates() {

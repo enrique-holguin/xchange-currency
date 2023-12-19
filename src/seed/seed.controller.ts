@@ -11,6 +11,7 @@ export class SeedController {
     status: 200,
     description: 'Seed data inserted successfully',
   })
+  @ApiResponse({ status: 200, description: 'Seed data inserted successfuly' })
   @ApiResponse({ status: 500, description: 'Interal Server Error' })
   @Get('data')
   async seedData() {

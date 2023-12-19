@@ -16,6 +16,17 @@ async function bootstrap() {
     .setDescription('API de cambio de divisas')
     .setVersion('1.0')
     .addTag('exchange')
+    .addBearerAuth(
+      {
+        description: `Please enter your Acces Token (JWT)`,
+        name: 'Authorization',
+        bearerFormat: 'Bearer',
+        scheme: 'Bearer',
+        type: 'http',
+        in: 'Header',
+      },
+      'jwt',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
